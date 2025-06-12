@@ -33,9 +33,10 @@ pub fn make_procedure_type(
     scalar_types
         .entry("int4".into())
         .or_insert(models::ScalarType {
-            representation: Some(models::TypeRepresentation::Int32),
+            representation: models::TypeRepresentation::Int32,
             aggregate_functions: BTreeMap::new(),
             comparison_operators: BTreeMap::new(),
+            extraction_functions: BTreeMap::new(),
         });
 
     fields.insert(
@@ -65,6 +66,7 @@ pub fn make_procedure_type(
         models::ObjectType {
             description: Some(format!("Responses from the '{name}' procedure")),
             fields,
+            foreign_keys: BTreeMap::new(),
         },
     );
 
@@ -102,6 +104,7 @@ pub fn make_insert_objects_type(
     models::ObjectType {
         description: None,
         fields,
+        foreign_keys: BTreeMap::new(),
     }
 }
 
@@ -135,6 +138,7 @@ pub fn make_update_column_type(
                         "Update the '{column_name}' column in the '{collection_name}' collection"
                     )),
                     fields,
+                    foreign_keys: BTreeMap::new(),
                 },
             ))
         }
