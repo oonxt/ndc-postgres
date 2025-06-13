@@ -18,3 +18,4 @@ pub use query_engine_execution;
 pub use query_engine_metadata;
 pub use query_engine_sql;
 pub use query_engine_translation;
+pub use prometheus;
